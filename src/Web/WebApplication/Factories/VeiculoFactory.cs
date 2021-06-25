@@ -45,6 +45,5 @@ namespace WebApplication.Factories
 
             return lista;
         }
-
     }
 }

@@ -4,6 +4,7 @@ using Infra.Contexto;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -40,6 +41,18 @@ namespace Infra.Persistencia
         {
             var veiculo = await _dataContext.Veiculos.FirstOrDefaultAsync(x => x.VeiculoId == id);
             return veiculo;
+        }
+
+        public async Task<IEnumerable<Veiculo>> BuscarPorMarca(string marca)
+        {
+            return await _dataContext.Veiculos.AsNoTracking().Where(x => x.Marca == marca).ToListAsync();
+
+        }
+
+        public async Task<IEnumerable<Veiculo>> BuscarPorModelo(string modelo)
+        {
+            return await _dataContext.Veiculos.AsNoTracking().Where(x => x.Modelo == modelo).ToListAsync();
+
         }
 
         public async Task<IEnumerable<Veiculo>> ListarTodosVeiculos()

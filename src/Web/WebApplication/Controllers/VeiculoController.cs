@@ -31,11 +31,24 @@ namespace WebApplication.Controllers
             return View(ListarVeiculoViewModel);
         }
 
-        public async Task<IActionResult> BuscarPorMarca()
+        [HttpPost]
+        public async Task<IActionResult> BuscarMarca(string marca)
         {
+            var marcasVeiculo = await _consultarVeiculo.BuscarPorMarca(marca);
+            var listarMarcaVeiculo = VeiculoFactory.MapearListaVeiculoViewModel(marcasVeiculo);
 
-            return RedirectToAction("Index");
+            return View(listarMarcaVeiculo);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> BuscarModelo(string modelo)
+        {
+            var modelosVeiculo = await _consultarVeiculo.BuscarPorModelo(modelo);
+            var listarModeloVeiculo = VeiculoFactory.MapearListaVeiculoViewModel(modelosVeiculo);
+
+            return View(listarModeloVeiculo);
+        }
+
 
         public IActionResult Criar()
         {
@@ -117,7 +130,10 @@ namespace WebApplication.Controllers
             return RedirectToAction("Index");
         }
 
-
+        public IActionResult Contato()
+        {
+            return View();
+        }
 
     }
 }

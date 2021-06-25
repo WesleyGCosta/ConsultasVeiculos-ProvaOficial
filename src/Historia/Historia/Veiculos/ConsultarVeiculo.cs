@@ -19,6 +19,16 @@ namespace Historia.Veiculos
             return await _veiculoRepository.BuscarPorId(id);
         }
 
+        public async Task<IEnumerable<Veiculo>> BuscarPorMarca(string marca)
+        {
+            return await _veiculoRepository.BuscarPorMarca(marca);
+        }
+
+        public async Task<IEnumerable<Veiculo>> BuscarPorModelo(string modelo)
+        {
+            return await _veiculoRepository.BuscarPorModelo(modelo);
+        }
+
         public async Task<IEnumerable<Veiculo>> ListarTodosVeiculos()
         {
             return await _veiculoRepository.ListarTodosVeiculos();
